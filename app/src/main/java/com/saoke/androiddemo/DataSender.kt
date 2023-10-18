@@ -4,16 +4,16 @@ class DataSender {
     private val upListData = mutableListOf<Up>()
     private val activitiesList = mutableListOf<Activity>()
 
-    public fun createData() {
+    fun createData() {
         createUp()
         createActivities()
     }
 
-    public fun getUpList(): MutableList<Up> {
+    fun getUpList(): MutableList<Up> {
         return upListData
     }
 
-    public fun getActivitiesList(): MutableList<Activity> {
+    fun getActivitiesList(): MutableList<Activity> {
         return activitiesList
     }
 
@@ -28,12 +28,12 @@ class DataSender {
     }
 
     private fun createActivities(): MutableList<Activity> {
-        activitiesList.add(Activity(upListData[0], "骚客.的Android笔记", R.drawable.saoke))
-        activitiesList.add(Activity(upListData[1], "娜娜的表情包", R.drawable.nana))
-        activitiesList.add(Activity(upListData[2], "这是小橘的动态", R.drawable.xiaoju))
-        activitiesList.add(Activity(upListData[3], "这是包公的动态", R.drawable.baogong))
+        activitiesList.add(Activity(upListData[0], "好想...好想成为原生高手！", R.drawable.saoke))
+        activitiesList.add(Activity(upListData[1], "娜娜的表情包（印堂发黑猫，鼻子掉漆猫）", R.drawable.nana))
+        activitiesList.add(Activity(upListData[2], "我将以高达形态出击", R.drawable.xiaoju))
+        activitiesList.add(Activity(upListData[3], "你的脸好黑，就叫你包公吧！", R.drawable.baogong))
         activitiesList.add(Activity(upListData[4], "这是布偶的动态", R.drawable.buou))
-        activitiesList.add(Activity(upListData[4], "这是丸子的动态", R.drawable.wanzi))
+        activitiesList.add(Activity(upListData[5], "这是丸子的动态", R.drawable.wanzi))
 
         // 将Up和动态绑定
         for (index in upListData.indices) {
