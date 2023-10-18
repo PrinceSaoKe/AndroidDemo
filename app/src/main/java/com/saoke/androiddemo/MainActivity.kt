@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
             override fun onItemClick(position: Int) {
                 // ViewPager2切换到对应页面
                 activityViewpager.currentItem = position
-                println("666666666666666")
             }
         })
     }
