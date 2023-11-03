@@ -1,5 +1,6 @@
 package com.saoke.androiddemo
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,17 @@ class MainActivity : ComponentActivity() {
             override fun onItemClick(position: Int) {
                 // ViewPager2切换到对应页面
                 activityViewpager.currentItem = position
+            }
+        })
+        // 长按头像跳转Up主详细页面
+        upListAdapter.setOnItemLongClickListener(object : UpListAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(up: Up): Boolean {
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra("name", up.name)
+                intent.putExtra("avatarResourceId", up.avatarResourceId)
+                intent.putExtra("fansNumber", up.fansNumber)
+                startActivity(intent)
+                return true
             }
         })
     }

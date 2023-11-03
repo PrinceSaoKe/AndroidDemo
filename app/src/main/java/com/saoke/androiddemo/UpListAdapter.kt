@@ -12,6 +12,7 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
     private var data: MutableList<Up> = mutableListOf()
 
     private var itemClickListener: OnItemClickListener? = null
+    private var itemLongClickListener: OnItemLongClickListener? = null
 
     fun setData(data: MutableList<Up>) {
         this.data = data
@@ -31,6 +32,7 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
         holder.bindData(data[position])
 
         holder.itemView.setOnClickListener { itemClickListener?.onItemClick(position) }
+        holder.itemView.setOnLongClickListener { itemLongClickListener?.onItemLongClick(data[position]) == true }
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -49,6 +51,14 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         itemClickListener = listener
+    }
+
+    interface OnItemLongClickListener {
+        fun onItemLongClick(up: Up): Boolean
+    }
+
+    fun setOnItemLongClickListener(listener: OnItemLongClickListener) {
+        itemLongClickListener = listener
     }
 
 }
