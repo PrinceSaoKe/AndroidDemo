@@ -27,5 +27,10 @@ class DetailActivity : ComponentActivity() {
         avatar.setImageResource(avatarResourceId)
 
         val followButton = findViewById<Button>(R.id.followButton)
+        followButton.setOnClickListener {
+            if (name != null) {
+                DataSender.unfollow(name)
+            }
+        }
     }
 }
