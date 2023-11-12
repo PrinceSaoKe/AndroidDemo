@@ -11,12 +11,10 @@ object DataSender {
         initFollowedList()
     }
 
-    fun getUpList(): MutableList<Up> {
-        return upListData
-    }
-
     fun getActivitiesList(): MutableList<Activity> {
-        return activitiesList
+        val list = mutableListOf<Activity>()
+        followedList.forEach { up -> list.add(up.activity) }
+        return list
     }
 
     fun getFollowedList(): MutableList<Up> {
@@ -63,7 +61,21 @@ object DataSender {
         for (i in 0 until followedList.size) {
             if (followedList[i].name == upName) {
                 followedList.removeAt(i)
+                break
             }
+        }
+    }
+
+    fun follow(upName: String) {
+        var up = upListData[0]
+        for (i in 0 until upListData.size) {
+            if (upListData[i].name == upName) {
+                up = upListData[i]
+                break
+            }
+        }
+        if (!followedList.contains(up)) {
+            followedList.add(up)
         }
     }
 }

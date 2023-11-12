@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/follow_button"
-            android:text="@string/follow" />
+            android:text="@string/unfollow" />
 
         <ImageView
             android:id="@+id/avatar"

@@ -2,4 +2,5 @@
     <string name="app_name">Android Demo</string>
     <string name="follow_button">关注按钮</string>
     <string name="follow">关注</string>
+    <string name="unfollow">取消关注</string>
 </resources>

@@ -1,13 +1,17 @@
 package com.saoke.androiddemo
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.databinding.DataBindingUtil
 import com.saoke.androiddemo.databinding.ActivityDetailBinding
 
 class DetailActivity : ComponentActivity() {
+    private var followAction = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val intent = intent
@@ -29,8 +33,22 @@ class DetailActivity : ComponentActivity() {
         val followButton = findViewById<Button>(R.id.followButton)
         followButton.setOnClickListener {
             if (name != null) {
-                DataSender.unfollow(name)
+                if (followAction) {
+                    DataSender.unfollow(name)
+                    Toast.makeText(this, "已取消关注", Toast.LENGTH_SHORT).show()
+                } else {
+                    DataSender.follow(name)
+                    Toast.makeText(this, "已关注", Toast.LENGTH_SHORT).show()
+                }
+                followAction = !followAction
             }
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent()
+        intent.putExtra("followAction", followAction)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 }

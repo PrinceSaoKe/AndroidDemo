@@ -10,12 +10,16 @@ import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("MyLog","开始onCreate")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // 创建数据
         DataSender.createData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         val upListData = DataSender.getFollowedList()
         val activitiesList = DataSender.getActivitiesList()
 
