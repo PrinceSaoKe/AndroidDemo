@@ -56,26 +56,4 @@ object DataSender {
     private fun initFollowedList() {
         followedList.addAll(upListData)
     }
-
-    fun unfollow(upName: String) {
-        for (i in 0 until followedList.size) {
-            if (followedList[i].name == upName) {
-                followedList.removeAt(i)
-                break
-            }
-        }
-    }
-
-    fun follow(upName: String) {
-        var up = upListData[0]
-        for (i in 0 until upListData.size) {
-            if (upListData[i].name == upName) {
-                up = upListData[i]
-                break
-            }
-        }
-        if (!followedList.contains(up)) {
-            followedList.add(up)
-        }
-    }
 }

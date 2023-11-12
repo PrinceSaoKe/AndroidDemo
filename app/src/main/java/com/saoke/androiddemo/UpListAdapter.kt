@@ -45,6 +45,16 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
         }
     }
 
+    fun deleteData(upName: String) {
+        for (i in 0 until data.size) {
+            if (data[i].name == upName) {
+                data.removeAt(i)
+                notifyItemRemoved(i)
+                break
+            }
+        }
+    }
+
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }

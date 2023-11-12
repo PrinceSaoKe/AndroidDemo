@@ -2,13 +2,15 @@ package com.saoke.androiddemo
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 
 
 class MainActivity : ComponentActivity() {
+    private val upListAdapter = UpListAdapter()
+    private val adapter = ActivityViewpagerAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,15 +26,12 @@ class MainActivity : ComponentActivity() {
         val activitiesList = DataSender.getActivitiesList()
 
         val upListView = findViewById<RecyclerView>(R.id.up_list)
-        val upListAdapter = UpListAdapter()
         upListAdapter.setData(upListData)
 
         upListView.adapter = upListAdapter
 
         val activityViewpager = findViewById<ViewPager2>(R.id.activity_viewpager)
-        val adapter = ActivityViewpagerAdapter()
         adapter.setData(activitiesList)
-        Log.d("MyLog", upListData.toString())
         activityViewpager.adapter = adapter
         activityViewpager.currentItem = 0
 
@@ -49,9 +48,24 @@ class MainActivity : ComponentActivity() {
                 intent.putExtra("name", up.name)
                 intent.putExtra("avatarResourceId", up.avatarResourceId)
                 intent.putExtra("fansNumber", up.fansNumber)
-                startActivity(intent)
+                startActivityForResult(intent, 1)
                 return true
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            1 -> {
+                if (data != null) {
+                    val upName = data.getStringExtra("upName")
+                    if (upName != null) {
+                        upListAdapter.deleteData(upName)
+                        adapter.deleteData(upName)
+                    }
+                }
+            }
+        }
     }
 }

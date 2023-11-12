@@ -29,13 +29,23 @@ class ActivityViewpagerAdapter : RecyclerView.Adapter<ActivityViewpagerAdapter.M
         holder.bindData(data[position])
     }
 
+    fun deleteData(upName: String) {
+        for (i in 0 until data.size) {
+            if (data[i].up.name == upName) {
+                data.removeAt(i)
+                notifyItemRemoved(i)
+                break
+            }
+        }
+    }
+
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val upView: TextView = itemView.findViewById(R.id.activity_up)
         private val textView: TextView = itemView.findViewById(R.id.activity_text)
         private val imageView: ImageView = itemView.findViewById(R.id.activity_image)
 
         fun bindData(data: Activity) {
-            upView.text = data.up.name + "的动态"
+            upView.text = "${data.up.name}的动态"
             textView.text = data.text
             imageView.setImageResource(data.image)
         }

@@ -11,15 +11,16 @@ import com.saoke.androiddemo.databinding.ActivityDetailBinding
 
 class DetailActivity : ComponentActivity() {
     private var followAction = true
+    private var name: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         val intent = intent
 //        原本打算用序列化直接传递对象的，但是我手机的API版本太低不支持这种写法
 //        val up = intent.getSerializableExtra("up", Up::class.java)
-        val name = intent.getStringExtra("name")
+        name = intent.getStringExtra("name")!!
         val avatarResourceId = intent.getIntExtra("avatarResourceId", 0)
         val fansNumber = intent.getIntExtra("fansNumber", 0)
+        super.onCreate(savedInstanceState)
         val binding: ActivityDetailBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
@@ -32,23 +33,21 @@ class DetailActivity : ComponentActivity() {
 
         val followButton = findViewById<Button>(R.id.followButton)
         followButton.setOnClickListener {
-            if (name != null) {
-                if (followAction) {
-                    DataSender.unfollow(name)
-                    Toast.makeText(this, "已取消关注", Toast.LENGTH_SHORT).show()
-                } else {
-                    DataSender.follow(name)
-                    Toast.makeText(this, "已关注", Toast.LENGTH_SHORT).show()
-                }
-                followAction = !followAction
+            if (followAction) {
+                Toast.makeText(this, "已取消关注", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "已关注", Toast.LENGTH_SHORT).show()
             }
+            followAction = !followAction
         }
     }
 
     override fun onBackPressed() {
-        val intent = Intent()
-        intent.putExtra("followAction", followAction)
-        setResult(RESULT_OK, intent)
+        if (!followAction) {
+            val intent = Intent()
+            intent.putExtra("upName", name)
+            setResult(RESULT_OK, intent)
+        }
         finish()
     }
 }
