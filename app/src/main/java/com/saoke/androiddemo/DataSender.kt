@@ -36,7 +36,7 @@ object DataSender {
         activitiesList.add(
             Activity(
                 upListData[1],
-                "娜娜的表情包（印堂发黑猫，鼻子掉漆猫）",
+                "印堂发黑猫，鼻子掉漆猫",
                 R.drawable.nana
             )
         )

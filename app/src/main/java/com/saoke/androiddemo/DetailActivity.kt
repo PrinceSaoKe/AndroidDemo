@@ -30,8 +30,8 @@ class DetailActivity : ComponentActivity() {
         myBinding.followButton.text = if (followAction) "取消关注" else "关注"
 
         myBinding.name = name
-        myBinding.fansNumber.text = "粉丝数：$fansNumber"
-//        不知道为什么对头像的resourceId赋值，无法显示图片，只好改用findViewById
+        myBinding.fansNumber.text = getString(R.string.fans_number, fansNumber.toString())
+//        不知道为什么dataBinding对头像的resourceId赋值，无法显示图片，只好改用viewBinding
 //        binding.avatarResourceId = avatarResourceId
         myBinding.avatar.setImageResource(avatarResourceId)
 

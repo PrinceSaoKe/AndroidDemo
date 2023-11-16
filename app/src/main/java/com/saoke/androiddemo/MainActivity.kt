@@ -3,8 +3,7 @@ package com.saoke.androiddemo
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import com.saoke.androiddemo.databinding.ActivityMainBinding
 
 
 class MainActivity : ComponentActivity() {
@@ -13,24 +12,21 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 创建数据
         DataSender.createData()
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         val upListData = DataSender.getFollowedList()
         val activitiesList = DataSender.getActivitiesList()
 
-        val upListView = findViewById<RecyclerView>(R.id.up_list)
+        val upListView = binding.upList
         upListAdapter.setData(upListData)
 
         upListView.adapter = upListAdapter
 
-        val activityViewpager = findViewById<ViewPager2>(R.id.activity_viewpager)
+        val activityViewpager = binding.activityViewpager
         adapter.setData(activitiesList)
         activityViewpager.adapter = adapter
         activityViewpager.currentItem = 0

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/activity_up"
+        android:id="@+id/upView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -14,13 +14,13 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/activity_text"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp" />
 
     <ImageView
-        android:id="@+id/activity_image"
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@null"

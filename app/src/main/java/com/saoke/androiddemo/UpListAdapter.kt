@@ -1,11 +1,9 @@
 package com.saoke.androiddemo
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.saoke.androiddemo.databinding.UpListDataBinding
 
 class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
 
@@ -23,9 +21,8 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.up_list_data, parent, false)
-        return MyViewHolder(view)
+        val binding = UpListDataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -35,13 +32,11 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
         holder.itemView.setOnLongClickListener { itemLongClickListener?.onItemLongClick(data[position]) == true }
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val upName: TextView = itemView.findViewById(R.id.up_name)
-        private val upAvatar: ImageView = itemView.findViewById(R.id.up_avatar)
-
+    class MyViewHolder(private val binding: UpListDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bindData(data: Up) {
-            upName.text = data.name
-            upAvatar.setImageResource(data.avatarResourceId)
+            binding.upName.text = data.name
+            binding.upAvatar.setImageResource(data.avatarResourceId)
         }
     }
 
@@ -50,9 +45,15 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
             if (data[i].name == upName) {
                 data.removeAt(i)
                 notifyItemRemoved(i)
+//                updateListenersAfterDelete(i)
                 break
             }
         }
+    }
+
+    private fun updateListenersAfterDelete(position: Int) {
+        itemClickListener?.onItemClick(position)
+        itemLongClickListener?.onItemLongClick(data[position])
     }
 
     interface OnItemClickListener {

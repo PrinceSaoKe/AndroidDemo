@@ -1,11 +1,9 @@
 package com.saoke.androiddemo
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.saoke.androiddemo.databinding.ActivityViewpagerDataBinding
 
 class ActivityViewpagerAdapter : RecyclerView.Adapter<ActivityViewpagerAdapter.MyViewHolder>() {
 
@@ -20,9 +18,9 @@ class ActivityViewpagerAdapter : RecyclerView.Adapter<ActivityViewpagerAdapter.M
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_viewpager_data, parent, false)
-        return MyViewHolder(view)
+        val binding =
+            ActivityViewpagerDataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -39,15 +37,14 @@ class ActivityViewpagerAdapter : RecyclerView.Adapter<ActivityViewpagerAdapter.M
         }
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val upView: TextView = itemView.findViewById(R.id.activity_up)
-        private val textView: TextView = itemView.findViewById(R.id.activity_text)
-        private val imageView: ImageView = itemView.findViewById(R.id.activity_image)
+    class MyViewHolder(private val binding: ActivityViewpagerDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(data: Activity) {
-            upView.text = "${data.up.name}的动态"
-            textView.text = data.text
-            imageView.setImageResource(data.image)
+            binding.upView.text =
+                binding.root.context.getString(R.string.viewpage_title, data.up.name)
+            binding.textView.text = data.text
+            binding.imageView.setImageResource(data.image)
         }
     }
 }
