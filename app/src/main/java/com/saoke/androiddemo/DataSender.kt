@@ -22,12 +22,12 @@ object DataSender {
     }
 
     private fun createUp(): MutableList<Up> {
-        upListData.add(Up("骚客.", R.drawable.saoke))
-        upListData.add(Up("娜娜", R.drawable.nana))
-        upListData.add(Up("小橘", R.drawable.xiaoju))
-        upListData.add(Up("包公", R.drawable.baogong))
-        upListData.add(Up("布偶", R.drawable.buou))
-        upListData.add(Up("丸子", R.drawable.wanzi))
+        upListData.add(Up("骚客.", R.drawable.saoke, 123))
+        upListData.add(Up("娜娜", R.drawable.nana, 1024))
+        upListData.add(Up("小橘", R.drawable.xiaoju, 100))
+        upListData.add(Up("包公", R.drawable.baogong, 25))
+        upListData.add(Up("布偶", R.drawable.buou, 120))
+        upListData.add(Up("丸子", R.drawable.wanzi, 15))
         return upListData
     }
 
