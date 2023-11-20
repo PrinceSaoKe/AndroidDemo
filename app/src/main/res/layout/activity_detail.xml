@@ -37,6 +37,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="5dp"
                 android:contentDescription="@null"
+                android:scaleType="centerCrop"
                 app:shapeAppearance="@style/circle_image" />
             <!--            android:src="@{avatarResourceId}"-->
 
