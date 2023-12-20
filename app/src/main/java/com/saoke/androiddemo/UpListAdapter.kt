@@ -45,7 +45,7 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
             if (data[i].name == upName) {
                 data.removeAt(i)
                 notifyItemRemoved(i)
-//                updateListenersAfterDelete(i)
+                notifyItemRangeChanged(0, data.size)
                 break
             }
         }
