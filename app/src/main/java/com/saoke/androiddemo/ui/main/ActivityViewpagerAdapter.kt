@@ -34,6 +34,7 @@ class ActivityViewpagerAdapter : RecyclerView.Adapter<ActivityViewpagerAdapter.M
             if (data[i].up.name == upName) {
                 data.removeAt(i)
                 notifyItemRemoved(i)
+                notifyItemRangeChanged(i, data.size - i)
                 break
             }
         }
