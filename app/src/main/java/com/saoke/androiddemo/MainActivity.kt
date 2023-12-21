@@ -8,7 +8,7 @@ import com.saoke.androiddemo.databinding.ActivityMainBinding
 
 class MainActivity : ComponentActivity() {
     private val upListAdapter = UpListAdapter()
-    private val adapter = ActivityViewpagerAdapter()
+    private val viewpagerAdapter = ActivityViewpagerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,17 +18,17 @@ class MainActivity : ComponentActivity() {
         // 创建数据
         DataSender.createData()
 
-        val upListData = DataSender.getFollowedList()
+        // 关注的Up主和对应的动态
+        val upListData = DataSender.followedList
         val activitiesList = DataSender.getActivitiesList()
 
-        val upListView = binding.upList
+        val upListView = binding.upList     // Up主RecyclerView
         upListAdapter.setData(upListData)
-
         upListView.adapter = upListAdapter
 
         val activityViewpager = binding.activityViewpager
-        adapter.setData(activitiesList)
-        activityViewpager.adapter = adapter
+        viewpagerAdapter.setData(activitiesList)
+        activityViewpager.adapter = viewpagerAdapter
         activityViewpager.currentItem = 0
 
         upListAdapter.setOnItemClickListener(object : UpListAdapter.OnItemClickListener {
@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
                     val upName = data.getStringExtra("upName")
                     if (upName != null) {
                         upListAdapter.deleteData(upName)
-                        adapter.deleteData(upName)
+                        viewpagerAdapter.deleteData(upName)
                     }
                 }
             }

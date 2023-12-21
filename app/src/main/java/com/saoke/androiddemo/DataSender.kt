@@ -1,24 +1,14 @@
 package com.saoke.androiddemo
 
 object DataSender {
-    private val upListData = mutableListOf<Up>()
-    private val activitiesList = mutableListOf<Activity>()
-    private val followedList = mutableListOf<Up>()
+    private val upListData = mutableListOf<Up>()            // 所有的Up主
+    private val activitiesList = mutableListOf<Activity>()  // 所有的动态
+    val followedList = mutableListOf<Up>()                  // 我关注的Up主
 
     fun createData() {
         createUp()
         createActivities()
         initFollowedList()
-    }
-
-    fun getActivitiesList(): MutableList<Activity> {
-        val list = mutableListOf<Activity>()
-        followedList.forEach { up -> list.add(up.activity) }
-        return list
-    }
-
-    fun getFollowedList(): MutableList<Up> {
-        return followedList
     }
 
     private fun createUp(): MutableList<Up> {
@@ -55,5 +45,12 @@ object DataSender {
 
     private fun initFollowedList() {
         followedList.addAll(upListData)
+    }
+
+    // 获取所有已关注的Up主的动态
+    fun getActivitiesList(): MutableList<Activity> {
+        val list = mutableListOf<Activity>()
+        followedList.forEach { up -> list.add(up.activity) }
+        return list
     }
 }
