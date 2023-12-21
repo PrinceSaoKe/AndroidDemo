@@ -3,6 +3,7 @@ package com.saoke.androiddemo
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
 import com.saoke.androiddemo.databinding.ActivityMainBinding
 
 
@@ -44,23 +45,24 @@ class MainActivity : ComponentActivity() {
                 intent.putExtra("name", up.name)
                 intent.putExtra("avatarResourceId", up.avatarResourceId)
                 intent.putExtra("fansNumber", up.fansNumber)
-                startActivityForResult(intent, 1)
+                startActivity.launch(intent)
                 return true
             }
         })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            1 -> {
-                if (data != null) {
-                    val upName = data.getStringExtra("upName")
-                    if (upName != null) {
-                        upListAdapter.deleteData(upName)
-                        viewpagerAdapter.deleteData(upName)
-                    }
-                }
+    private val startActivity = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        // 处理返回的结果
+        val code = result.resultCode // 返回码 如：Activity.RESULT_OK、Activity.RESULT_CANCELED
+        val data = result.data
+
+        if (code == RESULT_OK && data != null) {
+            val upName = data.getStringExtra("upName")
+            if (upName != null) {
+                upListAdapter.deleteData(upName)
+                viewpagerAdapter.deleteData(upName)
             }
         }
     }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import com.saoke.androiddemo.databinding.ActivityDetailBinding
 
 class DetailActivity : ComponentActivity() {
@@ -46,15 +47,17 @@ class DetailActivity : ComponentActivity() {
             followAction = !followAction
             recreate()
         }
-    }
 
-    override fun onBackPressed() {
-        if (!followAction) {
-            val intent = Intent()
-            intent.putExtra("upName", name)
-            setResult(RESULT_OK, intent)
-        }
-        finish()
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (!followAction) {
+                    val backIntent = Intent()
+                    backIntent.putExtra("upName", name)
+                    setResult(RESULT_OK, backIntent)
+                }
+                finish()
+            }
+        })
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
