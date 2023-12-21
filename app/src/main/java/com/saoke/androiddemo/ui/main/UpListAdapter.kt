@@ -1,9 +1,10 @@
-package com.saoke.androiddemo
+package com.saoke.androiddemo.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.saoke.androiddemo.databinding.UpListDataBinding
+import com.saoke.androiddemo.logic.model.Up
 
 class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
 
@@ -49,11 +50,6 @@ class UpListAdapter : RecyclerView.Adapter<UpListAdapter.MyViewHolder>() {
                 break
             }
         }
-    }
-
-    private fun updateListenersAfterDelete(position: Int) {
-        itemClickListener?.onItemClick(position)
-        itemLongClickListener?.onItemLongClick(data[position])
     }
 
     interface OnItemClickListener {

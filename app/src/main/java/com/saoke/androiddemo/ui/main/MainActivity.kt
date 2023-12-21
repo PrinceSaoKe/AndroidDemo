@@ -1,10 +1,13 @@
-package com.saoke.androiddemo
+package com.saoke.androiddemo.ui.main
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
+import com.saoke.androiddemo.logic.model.DataSender
 import com.saoke.androiddemo.databinding.ActivityMainBinding
+import com.saoke.androiddemo.logic.model.Up
+import com.saoke.androiddemo.ui.detail.DetailActivity
 
 
 class MainActivity : ComponentActivity() {

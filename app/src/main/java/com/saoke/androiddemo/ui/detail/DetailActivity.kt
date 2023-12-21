@@ -1,10 +1,11 @@
-package com.saoke.androiddemo
+package com.saoke.androiddemo.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
+import com.saoke.androiddemo.R
 import com.saoke.androiddemo.databinding.ActivityDetailBinding
 
 class DetailActivity : ComponentActivity() {

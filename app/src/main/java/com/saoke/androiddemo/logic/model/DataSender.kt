@@ -1,4 +1,6 @@
-package com.saoke.androiddemo
+package com.saoke.androiddemo.logic.model
+
+import com.saoke.androiddemo.R
 
 object DataSender {
     private val upListData = mutableListOf<Up>()            // 所有的Up主

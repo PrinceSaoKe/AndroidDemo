@@ -1,9 +1,11 @@
-package com.saoke.androiddemo
+package com.saoke.androiddemo.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.saoke.androiddemo.R
 import com.saoke.androiddemo.databinding.ActivityViewpagerDataBinding
+import com.saoke.androiddemo.logic.model.Activity
 
 class ActivityViewpagerAdapter : RecyclerView.Adapter<ActivityViewpagerAdapter.MyViewHolder>() {
 
