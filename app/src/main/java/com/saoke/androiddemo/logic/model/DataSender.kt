@@ -14,6 +14,7 @@ object DataSender {
     }
 
     private fun createUp(): MutableList<Up> {
+        upListData.clear()
         upListData.add(Up("骚客.", R.drawable.saoke, 123))
         upListData.add(Up("娜娜", R.drawable.nana, 1024))
         upListData.add(Up("小橘", R.drawable.xiaoju, 100))
@@ -24,6 +25,7 @@ object DataSender {
     }
 
     private fun createActivities(): MutableList<Activity> {
+        activitiesList.clear()
         activitiesList.add(Activity(upListData[0], "好想...好想成为原生高手！", R.drawable.saoke))
         activitiesList.add(
             Activity(
