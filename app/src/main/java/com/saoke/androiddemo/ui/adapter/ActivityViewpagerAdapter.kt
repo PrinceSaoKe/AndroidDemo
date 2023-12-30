@@ -1,4 +1,4 @@
-package com.saoke.androiddemo.ui.main
+package com.saoke.androiddemo.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.saoke.androiddemo.ui.detail
+package com.saoke.androiddemo.ui.activity
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.saoke.androiddemo.ui.main
+package com.saoke.androiddemo.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.saoke.androiddemo.databinding.ActivityMainBinding
 import com.saoke.androiddemo.logic.model.DataSender
 import com.saoke.androiddemo.logic.model.Up
-import com.saoke.androiddemo.ui.detail.DetailActivity
+import com.saoke.androiddemo.ui.adapter.ActivityViewpagerAdapter
+import com.saoke.androiddemo.ui.adapter.UpListAdapter
 
 
 class MainActivity : ComponentActivity() {
