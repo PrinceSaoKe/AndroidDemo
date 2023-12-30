@@ -12,6 +12,8 @@ class DetailActivity : ComponentActivity() {
     private var followAction = true
     private var fansNumber = 0
     override fun onCreate(savedInstanceState: Bundle?) {
+        fansNumber = intent.getIntExtra("fansNumber", 0)
+
         // 读取recreate前的数据
         if (savedInstanceState != null) {
             followAction = savedInstanceState.getBoolean("followAction")
@@ -19,7 +21,6 @@ class DetailActivity : ComponentActivity() {
         }
 
 //        val up = intent.getSerializableExtra("up", Up::class.java)!!
-        fansNumber = intent.getIntExtra("fansNumber", 0)
         val name = intent.getStringExtra("name")
         val avatarResourceId = intent.getIntExtra("avatarResourceId", 0)
         super.onCreate(savedInstanceState)
